@@ -1,7 +1,7 @@
 name: Create a Jira ticket for Github issue
 on:
   issues:
-    types: [opened, closed]
+    types: [opened, closed, reopened]
 
 jobs:
   build:
