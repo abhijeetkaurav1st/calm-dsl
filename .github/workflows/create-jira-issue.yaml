@@ -1,7 +1,7 @@
 name: Create a Jira ticket for Github issue
 on:
   issues:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
   build:
@@ -9,9 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Print issue body
-        run: echo "${{ github.event.issue.html_url }}"\
+        run: 
+          echo "${{ github.event.issue.body}}"
       - run: gh issue comment $ISSUE --body "Thank you for opening this issue!"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.issue.body }}
+          ISSUE: ${{ github.event.issue.html_url }}
       
