@@ -1,4 +1,4 @@
-name: Setup & build calm-dsl
+name: Update release containers
 on:
   push:
     branches:

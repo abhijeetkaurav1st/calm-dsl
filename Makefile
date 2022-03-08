@@ -59,7 +59,8 @@ docker: dist
 release-docker: dist
 
 	[ -S /var/run/docker.sock ] && \
-		docker build . --rm --file Dockerfile --tag ${NAME}:${RELEASE_VERSION} --build-arg tag=${RELEASE_VERSION}
+		docker build . --rm --file Dockerfile --tag ${NAME}:${TAG} --build-arg tag=${TAG} && \
+		docker tag ${NAME}:${TAG} ${NAME}:${RELEASE_VERSION}
 
 black:
 	black .
