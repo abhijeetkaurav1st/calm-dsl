@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - 'release/**'
+  pull_request:
+    branches:
+      - 'release/**'
 
 jobs:
   build:
@@ -29,8 +32,11 @@ jobs:
     - name: Read VERSION file
       id: getversion
       run: echo "::set-output name=version::$(cat CalmVersion)"
+    - run: |
+        docker run -ti ntnx/calm-dsl:v${{ steps.getversion.outputs.version }}
+        calm
     - name: Publish docker image
       if: ${{ github.event_name == 'push' && github.repository == 'abhijeetkaurav1st/calm-dsl'}}
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push ntnx/calm-dsl:v${{ steps.getversion.outputs.version }}
+        docker push ntnx/calm-dsl:v${{ steps.getversion.outputs.version }} 
