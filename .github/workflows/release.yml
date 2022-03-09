@@ -6,6 +6,8 @@ on:
   pull_request:
     branches:
       - 'release/**'
+  schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
   build:
