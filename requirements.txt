@@ -16,8 +16,8 @@ jsonschema==3.2.0
 anytree==2.8.0
 asciimatics>==1.13.0
 peewee==3.10.0
-pycryptodome==3.9.0
-scrypt==0.8.13
+pycryptodome
+scrypt
 schema==0.7.1
 colorlog==5.0.1
 black==21.4b1
