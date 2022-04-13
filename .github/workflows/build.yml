@@ -31,6 +31,10 @@ jobs:
     - name: Install requirements
       run: |
         make dev
+    - name: Execute calm
+      run: |
+        source venv/bin/activate
+        calm
     - name: Build python package
       run: |
         make dist
