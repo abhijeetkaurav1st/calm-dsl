@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: ['3.8']
+        python-version: ['3.8', '3.7', '3.9']
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,20 +28,20 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install virtualenv
-    - name: Install requirements
+    - name: Install requirements in Python ${{ matrix.python-version }}
       run: |
         make dev
-    - name: Execute calm
+    - name: Execute calm in Python ${{ matrix.python-version }}
       run: |
         source venv/bin/activate
         calm
-    - name: Build python package
+    - name: Build python package in Python ${{ matrix.python-version }}
       run: |
         make dist
-    - name: Build docker image
+    - name: Build docker image in Python ${{ matrix.python-version }}
       run: |
         make docker
-    - name: Execute container
+    - name: Execute container in Python ${{ matrix.python-version }}
       uses: addnab/docker-run-action@v3
       with:
         image: ntnx/calm-dsl
